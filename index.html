@@ -2,332 +2,690 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Nitin Pandya | Portfolio</title>
-  <!-- Correct Font Awesome CDN for icons -->
+  <title>Nitin Pandya | Data Science & AI Leader Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Portfolio of Nitin Pandya, Associate Director – Data Science & AI. Analytics leader in insurance, retail, and healthcare. Power BI, Python, ML/AI expert.">
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --blue: #0065c7;
+      --light-blue: #e9f4fd;
+      --accent: #25b985;
+      --dark: #1a253c;
+      --bg: #f8fafc;
+      --card: #fff;
+      --particle: rgba(0,101,199,0.10);
+      --box-shadow: 0 4px 32px 0 rgba(35,85,210,0.09);
+      --nav-bg: #f9fbfd;
+      --input-bg: #f3f6fa;
+    }
+    [data-theme='dark'] {
+      --bg: #181e27;
+      --card: #232a36;
+      --nav-bg: #212836;
+      --light-blue: #1c2430;
+      --dark: #fff;
+      --blue: #4bb6ff;
+      --accent: #29e3ae;
+      --input-bg: #212836;
+      --box-shadow: 0 4px 36px 0 rgba(35,85,210,0.18);
+      --particle: rgba(75,182,255,0.12);
+    }
+    html {
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f6f8fa;
-      color: #222;
+      background: transparent;
+      color: var(--dark);
+      font-family: 'Roboto', Arial, sans-serif;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
     }
-    a { text-decoration: none; color: inherit; }
+    #bg-anim {
+      z-index: 0;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      background: radial-gradient(ellipse at top right, var(--light-blue) 25%, transparent 75%),
+                  radial-gradient(ellipse at 80% 70%, var(--accent) 9%, transparent 65%);
+      opacity: 0.8;
+      animation: gradientMove 12s ease-in-out infinite alternate;
+    }
+    @keyframes gradientMove {
+      0% { background-position: top right, 80% 70%; }
+      100% { background-position: 60% 10%, 60% 80%; }
+    }
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .container {
+      max-width: 950px;
+      margin: 40px auto 60px auto;
+      padding: 0 18px;
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--box-shadow);
+      position: relative;
+      z-index: 2;
+      transition: background 0.5s, color 0.5s;
+      opacity: 0;
+      transform: translateY(32px);
+      animation: fadeInUp 1.2s cubic-bezier(.31,.93,.54,1.06) 0.2s 1 forwards;
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: none; }
+    }
     header {
       display: flex;
       align-items: center;
-      padding: 20px 30px 10px 30px;
-      background: #ffffff;
-      border-bottom: 1px solid #e4e4e4;
-      position: sticky; top: 0; z-index: 100;
+      border-radius: 18px 18px 0 0;
+      background: var(--light-blue);
+      padding: 32px 24px 28px 24px;
+      box-shadow: 0 2px 18px 0 rgba(35,85,210,0.08);
+      position: relative;
     }
-    .portfolio-name {
+    .profile-pic {
+      width: 110px; height: 110px; border-radius: 50%;
+      object-fit: cover;
+      border: 3.5px solid var(--blue);
+      box-shadow: 0 2px 18px #e0ebff;
+      margin-right: 32px;
+      background: #fff;
+      transition: border 0.4s;
+    }
+    [data-theme='dark'] .profile-pic { background: #10161e; }
+    .head-details {
+      flex: 1;
+    }
+    .name {
+      font-family: 'Montserrat', sans-serif;
       font-size: 2.2rem;
-      font-weight: bold;
-      color: #0065c7;
-      letter-spacing: 1px;
-      margin-right: 14px;
-      transition: text-shadow .3s;
-      text-shadow: 0 2px 8px #e0ebff;
-    }
-    .home-icon {
-      font-size: 1.6rem;
-      color: #0065c7;
-      margin-right: auto;
-      margin-left: 14px;
-      cursor: pointer;
-      transition: color 0.3s, transform 0.3s;
-      vertical-align: middle;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .home-icon:hover {
-      color: #04345a;
-      transform: scale(1.15) rotate(-6deg);
-    }
-    nav {
-      display: flex;
-      gap: 36px;
-      margin-left: 32px;
-    }
-    nav a {
-      font-size: 1.13rem;
-      font-weight: 500;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 0 0 8px 0;
       letter-spacing: 0.5px;
-      padding: 6px 0;
-      transition: all 0.22s;
-      border-bottom: 2px solid transparent;
+      text-shadow: 0 1px 8px var(--light-blue);
+      transition: color 0.5s, text-shadow 0.5s;
     }
-    nav a:hover {
-      color: #0065c7;
-      font-size: 1.19rem;
-      border-bottom: 2px solid #0065c7;
-      text-decoration: underline;
+    .title {
+      color: #295680;
+      font-size: 1.16rem;
+      margin-bottom: 10px;
       font-weight: 600;
     }
-    main {
-      max-width: 900px;
-      margin: 36px auto 32px auto;
-      padding: 18px 24px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 20px 0 rgba(35,85,210,0.07);
+    [data-theme='dark'] .title { color: #81c9fc; }
+    .links {
+      margin-top: 8px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    section { margin-bottom: 40px; }
-    #about {
+    .links a, .links span {
+      color: var(--blue);
+      font-weight: 500;
+      font-size: 1.13rem;
+      text-decoration: none;
+      transition: color 0.18s;
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 7px;
+      opacity: 0.95;
     }
-    .profile-img {
-      width: 110px; height: 110px;
+    .links a:hover { color: #033d6b; }
+    [data-theme='dark'] .links a, [data-theme='dark'] .links span { color: #4bb6ff; }
+    .summary {
+      margin-top: 18px;
+      color: #284060;
+      font-size: 1.1rem;
+    }
+    [data-theme='dark'] .summary { color: #cdf0ff; }
+    .toggle-theme-btn {
+      position: absolute;
+      top: 18px; right: 24px;
+      font-size: 1.3rem;
+      color: var(--blue);
+      background: var(--light-blue);
+      border: none;
       border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 2px 14px #e4e9f7;
-      border: 3px solid #0065c7;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 1px 6px #b5deff73;
+      transition: background 0.4s, color 0.4s, transform 0.2s;
+      z-index: 2;
     }
-    .about-summary {
-      font-size: 1.14rem;
-      color: #444;
+    .toggle-theme-btn:hover { background: var(--accent); color: #fff; transform: scale(1.08) rotate(-10deg);}
+    nav {
+      background: var(--nav-bg);
+      display: flex;
+      gap: 36px;
+      padding: 15px 24px;
+      font-weight: 600;
+      border-bottom: 1px solid #e8ebf1;
+      border-radius: 0 0 8px 8px;
+      margin-bottom: 4px;
     }
-    .about-summary strong { color: #0065c7; }
-    #skills {
+    nav a {
+      color: #264d77;
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: color .18s, border .18s;
+      font-size: 1.08rem;
+      letter-spacing: 0.3px;
+    }
+    nav a:hover, nav a.active {
+      color: var(--blue);
+      border-bottom: 2.5px solid var(--blue);
+    }
+    section { padding: 38px 32px 0 32px; opacity: 0; transform: translateY(40px); transition: 1s all;}
+    section.visible { opacity: 1; transform: none;}
+    section:not(:last-child) { padding-bottom: 0; }
+    h2 {
+      color: var(--blue);
+      font-size: 1.48rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 1px;
+      transition: color 0.4s;
+    }
+    [data-theme='dark'] h2 { color: #4bb6ff; }
+    .skills-wrap {
       display: flex;
       flex-wrap: wrap;
-      gap: 32px 48px;
+      gap: 28px 48px;
     }
-    .skill {
+    .skill-block {
       display: flex; align-items: center;
-      gap: 10px;
-      background: #f2f8ff;
-      padding: 8px 18px;
-      border-radius: 16px;
-      box-shadow: 0 1px 4px #e3ecff;
-      min-width: 150px;
+      gap: 13px;
+      background: var(--light-blue);
+      padding: 11px 18px;
+      border-radius: 14px;
+      min-width: 170px;
       margin-bottom: 10px;
+      box-shadow: 0 2px 10px #e0ebff0f;
+      transition: background 0.4s;
     }
-    .skill-logo {
-      width: 34px; height: 34px;
-      object-fit: contain;
+    .skill-block svg, .skill-block img {
+      width: 36px; height: 36px; object-fit: contain;
+      display: block;
     }
-    .skill-name {
-      font-weight: 500; font-size: 1.1rem;
-      color: #0d4576;
+    .skill-block .skill-label {
+      font-weight: 600;
+      color: #11508d;
+      font-size: 1.13rem;
+      transition: color 0.4s;
     }
-    #projects .project {
+    [data-theme='dark'] .skill-block { background: #16203a;}
+    [data-theme='dark'] .skill-block .skill-label { color: #4bb6ff;}
+    /* PROJECT DETAILS LIST */
+    .project-details-list {
+      margin: 0 0 12px 18px;
+      padding-left: 0;
+      color: #2d4e69;
+    }
+    .project-details-list li {
       margin-bottom: 18px;
-      padding: 12px 16px;
-      border-left: 5px solid #0065c7;
-      background: #f8fafb;
-      border-radius: 8px;
-      box-shadow: 0 1px 8px #e4e9f7;
+      font-size: 1.09rem;
+      line-height: 1.55;
+      list-style: disc inside;
     }
-    .project-title {
-      font-size: 1.17rem; font-weight: 600; color: #1a2d4c;
+    [data-theme='dark'] .project-details-list { color: #99d2ff;}
+    .timeline {
+      border-left: 4px solid var(--blue);
+      margin-left: 12px;
+      padding-left: 24px;
+      position: relative;
     }
-    .project-desc { color: #444; margin-top: 4px; }
-    #recommendations .recommendation {
-      margin-bottom: 15px;
-      padding: 12px 18px;
-      background: #f2f7fa;
-      border-radius: 10px;
-      border-left: 4px solid #25b985;
-      box-shadow: 0 2px 7px #d9f5e8;
+    .job {
+      margin-bottom: 38px;
+      position: relative;
+    }
+    .job::before {
+      content: '';
+      position: absolute;
+      left: -31px;
+      top: 8px;
+      width: 17px;
+      height: 17px;
+      background: var(--card);
+      border: 3.5px solid var(--blue);
+      border-radius: 50%;
+      box-shadow: 0 2px 12px #e0ebff7a;
+    }
+    [data-theme='dark'] .job::before { background: #10161e;}
+    .job-title {
+      font-weight: 700;
+      font-size: 1.14rem;
+      color: #244169;
+      margin-bottom: 1px;
+    }
+    .job-meta {
+      color: #4c789e;
+      font-size: 1.01rem;
+      margin-bottom: 4px;
+    }
+    .job ul {
+      margin: 7px 0 0 15px; padding-left: 8px;
+      color: #27334a;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+    [data-theme='dark'] .job-title { color: #4bb6ff;}
+    [data-theme='dark'] .job-meta, [data-theme='dark'] .job ul { color: #b8dfff;}
+    .achievements-list {
+      margin: 0 0 20px 8px;
+      padding-left: 17px;
+      color: #2d4e69;
+    }
+    .achievements-list li {
+      margin-bottom: 8px;
       font-size: 1.05rem;
     }
-    .recommendation-author {
-      margin-top: 5px;
-      font-weight: bold; color: #229871; font-size: 1rem;
+    [data-theme='dark'] .achievements-list { color: #4bb6ff;}
+    #contact-form {
+      max-width: 450px;
+      margin: 20px auto 0 auto;
+      background: var(--light-blue);
+      border-radius: 12px;
+      padding: 28px 26px 20px 26px;
+      box-shadow: 0 2px 20px #c5f5e154;
+      display: flex; flex-direction: column; gap: 15px;
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s cubic-bezier(.31,.93,.54,1.06);
     }
-    #add-recommendation-form {
-      margin-top: 16px;
-      display: flex; flex-direction: column; gap: 9px; max-width: 410px;
-    }
-    #add-recommendation-form input, #add-recommendation-form textarea {
-      font-size: 1rem;
-      padding: 7px 9px;
-      border: 1px solid #b1d6f9;
-      border-radius: 6px;
-      resize: none;
-      outline: none;
-      background: #f6fbff;
-      transition: border 0.2s;
-    }
-    #add-recommendation-form input:focus, #add-recommendation-form textarea:focus {
-      border-color: #0065c7;
-    }
-    #add-recommendation-form button {
-      align-self: flex-start;
-      background: #25b985;
-      color: #fff;
-      padding: 8px 20px;
-      border: none;
+    [data-theme='dark'] #contact-form { background: #192d46; }
+    #contact-form label { font-weight: 500; font-size:1.07rem;}
+    #contact-form input, #contact-form textarea {
+      width: 100%;
+      padding: 9px 10px;
+      font-size: 1.05rem;
       border-radius: 7px;
-      font-size: 1rem;
-      font-weight: 500;
+      border: 1.2px solid #b1d6f9;
+      background: var(--input-bg);
+      outline: none;
+      margin-bottom: 6px;
+      color: var(--dark);
+      transition: border 0.22s, background 0.4s, color 0.5s;
+      font-family: inherit;
+      resize: vertical;
+    }
+    [data-theme='dark'] #contact-form input, [data-theme='dark'] #contact-form textarea { border: 1.2px solid #4bb6ff;}
+    #contact-form input:focus, #contact-form textarea:focus { border-color: var(--blue);}
+    #contact-form button {
+      background: var(--accent); color: #fff;
+      padding: 10px 18px;
+      border: none; border-radius: 6px;
+      font-weight: 600; font-size: 1.09rem;
       cursor: pointer;
       box-shadow: 0 2px 7px #c5f5e1;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.18s;
+      align-self: flex-start;
+      margin-top: 5px;
     }
-    #add-recommendation-form button:hover {
-      background: #1d9869;
-      transform: scale(1.04);
+    #contact-form button:hover { background: #1d9869; transform: scale(1.03);}
+    .form-success {
+      color: var(--accent); font-weight:600; font-size:1.11rem;
+      margin-top: 10px; margin-bottom: -9px;
+      animation: fadeInUp 0.8s;
     }
-    @media (max-width: 700px) {
-      main {padding: 7px 4vw;}
-      #about {flex-direction: column;align-items: flex-start;}
+    footer {
+      text-align: center;
+      font-size: 1.02rem;
+      color: #777;
+      padding: 28px 10px 16px 10px;
+      background: var(--light-blue);
+      border-radius: 0 0 18px 18px;
+      margin-top: -16px;
+      z-index: 2;
+      position: relative;
+    }
+    [data-theme='dark'] footer { background: #10161e; color: #bbb;}
+    @media (max-width: 900px) {
+      .container { margin: 12px 4vw 32px 4vw; }
+      header { flex-direction: column; text-align: center; }
+      .profile-pic { margin: 0 auto 18px auto; }
+      .head-details { width: 100%; }
+      nav { flex-wrap: wrap; gap: 16px; padding: 12px 4vw; }
+      section { padding: 32px 5vw 0 5vw; }
+    }
+    @media (max-width: 540px) {
+      section { padding: 28px 2vw 0 2vw; }
+      .skills-wrap { gap: 17px 8px; }
+      .skill-block { min-width: 120px; }
     }
   </style>
 </head>
 <body>
-  <!-- Header with Name & Home Icon -->
+<div id="bg-anim"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="container">
+  <!-- HEADER -->
   <header>
-    <span class="portfolio-name">Nitin Pandya</span>
-    <span title="Home" class="home-icon"><i class="fa-solid fa-home"></i></span>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#recommendations">Recommendations</a>
-    </nav>
+    <img class="profile-pic" src="https://media.licdn.com/dms/image/v2/C4E03AQF4AqNyNVHqLw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1639502333527?e=1755129600&v=beta&t=jYn_fHD2bo33GAYvk4aLfbtlBusg_Ydrt9hJnK819Zg" alt="Nitin Pandya photo" />
+    <div class="head-details">
+      <div class="name">Nitin Pandya</div>
+      <div class="title">Associate Director – Data Science & AI<br>Analytics Leader in Insurance, Retail & Healthcare</div>
+      <div class="links">
+        <a href="mailto:nitinpandya26@hotmail.com"><i class="fa-solid fa-envelope"></i>Email</a>
+        <a href="tel:+919967383003"><i class="fa-solid fa-phone"></i>+91-9967383003</a>
+        <a href="https://www.linkedin.com/in/nitinpandya" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i>LinkedIn</a>
+        <span title="Mumbai, India" style="color:#1976d2;"><i class="fa-solid fa-location-dot"></i>Mumbai, India</span>
+      </div>
+      <div class="summary">
+        Results-driven Data & Analytics Leader with 16+ years of experience across insurance, healthcare, retail, and logistics. Skilled in Python, SQL, Power BI, Tableau, and ML/AI model development.<br>
+        Proven track record of leading global teams, automating ETL workflows, and delivering actionable insights for Fortune 500 clients across the UK and EU.
+      </div>
+    </div>
+    <button class="toggle-theme-btn" id="toggle-theme" title="Switch dark/light mode">
+      <i class="fa-solid fa-moon"></i>
+    </button>
   </header>
-
-  <main>
-    <!-- About Me Section -->
-    <section id="about">
-      <img src="https://media.licdn.com/dms/image/v2/C4E03AQF4AqNyNVHqLw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1639502333527?e=1755129600&v=beta&t=jYn_fHD2bo33GAYvk4aLfbtlBusg_Ydrt9hJnK819Zg"
-           alt="Nitin Pandya Photo" class="profile-img"/>
-      <div>
-        <h2>Nitin Pandya</h2>
-        <div class="about-summary">
-          <p>
-            <strong>Associate Director – Data Analytics & Insights</strong><br>
-            Senior Data Leader with 12+ years in business analytics, AI, and digital transformation. Experienced in leading high-performance teams and delivering impactful solutions for global clients across <strong>insurance, healthcare, retail, and BFSI</strong> sectors. Proven track record in automating analytics workflows, building scalable ML models, and translating data into business value.<br>
-            Passionate about <strong>AI, automation, and making data-driven decisions accessible to all</strong>.
-          </p>
-        </div>
+  <!-- NAV -->
+  <nav>
+    <a href="#skills" class="active">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-wrap">
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+        <span class="skill-label">Python</span>
       </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <div class="skill">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-logo" alt="Python">
-        <span class="skill-name">Python</span>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R">
+        <span class="skill-label">R</span>
       </div>
-      <div class="skill">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" class="skill-logo" alt="R">
-        <span class="skill-name">R</span>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQL">
+        <span class="skill-label">SQL</span>
       </div>
-      <div class="skill">
-        <img src="https://www.svgrepo.com/show/354428/tableau-icon.svg" class="skill-logo" class="skill-logo" alt="Tableau">
-        <span class="skill-name">Tableau</span>
+      <div class="skill-block">
+        <img src="https://www.svgrepo.com/show/354428/tableau-icon.svg" alt="Tableau">
+        <span class="skill-label">Tableau</span>
       </div>
-      <div class="skill">
+      <div class="skill-block">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/2048px-New_Power_BI_Logo.svg.png" class="skill-logo" class="skill-logo" alt="Power BI">
-        <span class="skill-name">Power BI</span>
+		<span class="skill-label">Power BI</span>
       </div>
-      <div class="skill">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="skill-logo" alt="Azure">
-        <span class="skill-name">Azure</span>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
+        <span class="skill-label">Azure</span>
       </div>
-      <div class="skill">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skill-logo" alt="Git">
-        <span class="skill-name">Git</span>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+        <span class="skill-label">Git</span>
       </div>
-      <div class="skill">
+      <div class="skill-block">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xQcwKitRgXfqdi34DYlocPSEXD2G2zZipg&s" class="skill-logo" alt="AWS">
-        <span class="skill-name">AWS</span>
+        <span class="skill-label">AWS</span>
       </div>
-      <div class="skill">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" class="skill-logo" alt="SQL">
-        <span class="skill-name">SQL</span>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+        <span class="skill-label">JavaScript</span>
       </div>
-      <div class="skill">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="skill-logo" alt="JavaScript">
-        <span class="skill-name">JavaScript</span>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud">
+        <span class="skill-label">Google Cloud</span>
       </div>
-    </section>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+        <span class="skill-label">MySQL</span>
+      </div>
+      <div class="skill-block">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/databricks/databricks-original.svg" alt="Databricks">
+        <span class="skill-label">Databricks</span>
+      </div>
+    </div>
+    <h2 style="margin-top:36px">Specializations</h2>
+    <div style="color:#295680;line-height:1.7;font-size:1.08rem;margin-left:8px;">
+      <b>Business Intelligence</b>, Dashboarding, Data Visualization, KPI Design, <b>Claims Analytics</b>, Customer Segmentation, Predictive Modeling, Generative AI, <b>Machine Learning & AI</b>, NLP, Time Series Forecasting, ETL Automation, Data Strategy, Data Governance, Statistical Analysis
+    </div>
+  </section>
+  <!-- PROJECT DETAILS (as bullet points) -->
+  <section id="projects">
+    <h2>Key Projects</h2>
+    <ul class="project-details-list">
+      <li><b>AI-Powered Claims Analytics Platform:</b> Designed and deployed a scalable analytics platform for insurance clients. Automated claims analysis, reduced manual effort by 40%, and improved fraud detection accuracy. (Python, Power BI, Azure)</li>
+      <li><b>Real-Time BI Automation:</b> Built end-to-end BI automation for a major healthcare provider. Enabled executive dashboards, real-time insights, and saved 500+ man-hours annually. (Tableau, SQL, R)</li>
+      <li><b>Customer Segmentation with ML:</b> Productionized ML-driven segmentation for a retail client. Enhanced campaign targeting and increased ROI by 25%. (Python, scikit-learn, AWS)</li>
+      <li><b>Global Claims Data Lake:</b> Led the creation of a centralized data lake for a multinational insurer—enabling advanced underwriting and regional business insights. (Azure, Python)</li>
+    </ul>
+  </section>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Professional Experience</h2>
+    <div class="timeline">
+      <div class="job">
+        <div class="job-title">Associate Director, Data Analytics & Insights</div>
+        <div class="job-meta">Mercer Digital (Marsh & McLennan) | Mumbai | Dec 2021 – Present</div>
+        <ul>
+          <li>Led a cross-functional team of 8 to deliver analytics for 20+ global clients, primarily in healthcare & insurance.</li>
+          <li>Automated 10+ ETL pipelines with Python, saving $400k+ and boosting dashboard efficiency in Tableau/Power BI.</li>
+          <li>Built 10+ AI/ML modules for claims forecasting, renewals, segmentation—cutting manual work by 30%.</li>
+          <li>Created 15+ strategic dashboards, fueling a 40% YoY revenue boost via actionable insights for leadership.</li>
+          <li>Drove analytics for clients across UK, EU (Greece, Spain, Italy, Romania, Netherlands, Poland, Bulgaria).</li>
+          <li>Engineered plan design tools for PMI clients in UK/Lithuania—streamlining renewal planning and market positioning.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Senior Engineer, Data</div>
+        <div class="job-meta">XPO Logistics | Mumbai | Feb 2021 – Dec 2021</div>
+        <ul>
+          <li>Collaborated on geo-data mapping with Google API, Python & Tableau—optimized logistics operations.</li>
+          <li>Boosted ETL efficiency by 25% via BigQuery-based automation; delivered trend analysis for strategic ops.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Consultant</div>
+        <div class="job-meta">Fractal Analytics (P&G, Japan) | Mumbai | Nov 2017 – Feb 2021</div>
+        <ul>
+          <li>Led insights that increased client market share by 10% YoY; drove dashboarding and visualization with Tableau/Power BI.</li>
+          <li>Implemented ML models for forecasting/prediction (Random Forest, Decision Trees, K-Means Clustering).</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Analytics & MIS Lead</div>
+        <div class="job-meta">Adecco India (Liva Fabric, Grasim) | Sep 2017 – Nov 2017</div>
+        <ul>
+          <li>Developed predictive staffing models, improving sales by 20% YoY via optimal retail deployment.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Retail Analytics Associate</div>
+        <div class="job-meta">Sony India | Mumbai | Sep 2016 – Jul 2017</div>
+        <ul>
+          <li>Managed data analysis for Sony retail business, leading a 250+ member team; presented insights to senior management.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Retail Analytics Associate</div>
+        <div class="job-meta">Channelplay (Apple, Mumbai) | Nov 2014 – Sep 2016</div>
+        <ul>
+          <li>Managed retail ops for 1,000+ employees, designed incentive schemes, drove 20% sales growth via analytics.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Finance & MIS Manager</div>
+        <div class="job-meta">Jumboking Foods | Mumbai | Jun 2013 – Nov 2014</div>
+        <ul>
+          <li>Improved financial management by 15% with new systems and strategic reporting.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Finance & Taxation Associate</div>
+        <div class="job-meta">N.N. & Associates | Mumbai | Aug 2011 – May 2013</div>
+        <ul>
+          <li>Handled tax/audit filing, ensuring compliance and accuracy.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-title">Support Professional</div>
+        <div class="job-meta">Stream Global Services | Mumbai | Nov 2009 – Jul 2011</div>
+        <ul>
+          <li>Provided technical support for HP products, boosting North American customer satisfaction.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul class="achievements-list">
+      <li>Promoted to Senior Manager within a year at Mercer for leadership & strategy.</li>
+      <li>Won 2 O&T Global Awards for BI & automation at Mercer.</li>
+      <li>High NPS from clients at Fractal—exceptional client satisfaction.</li>
+      <li>Best employee award at Channelplay (Apple project).</li>
+      <li>Promoted to Manager within 9 months at Jumboking Foods.</li>
+    </ul>
+    <h2>Education & Professional Development</h2>
+    <ul class="achievements-list">
+      <li>M.S. (IT), Mumbai University, 2021 (EQF Level 7/Master’s)</li>
+      <li>BTech (EXTC), Mumbai University, 2009</li>
+      <li>Python 3 Programming Specialization, Applied Data Science (Coursera)</li>
+      <li>Business Analytics with R (Edvancer), Tableau (Udemy), Deep Learning (Intel)</li>
+    </ul>
+  </section>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form" autocomplete="off">
+      <label for="contact-name">Name:</label>
+      <input type="text" id="contact-name" name="name" required>
+      <label for="contact-email">Email:</label>
+      <input type="email" id="contact-email" name="email" required>
+      <label for="contact-message">Message:</label>
+      <textarea id="contact-message" name="message" rows="4" required></textarea>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+      <div id="form-success" class="form-success" style="display:none;"></div>
+    </form>
+  </section>
+  <footer id="footer">
+    &copy;2025 | Nitin Pandya &middot; Portfolio crafted for global analytics opportunities. | <span id="current-date"></span>
+  </footer>
+</div>
+<script>
+  // Dark Mode Toggle
+  const toggleBtn = document.getElementById('toggle-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if(localStorage.getItem('theme')==='dark' || (!localStorage.getItem('theme') && prefersDark)){
+    document.documentElement.setAttribute('data-theme','dark');
+    toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  }
+  toggleBtn.onclick = () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    if(current === 'dark') {
+      document.documentElement.setAttribute('data-theme','light');
+      toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      localStorage.setItem('theme','light');
+    } else {
+      document.documentElement.setAttribute('data-theme','dark');
+      toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+      localStorage.setItem('theme','dark');
+    }
+  };
 
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project">
-        <div class="project-title">AI-Powered Claims Analytics Platform</div>
-        <div class="project-desc">
-          Led the design and deployment of a scalable analytics platform using <strong>Python, Power BI, and Azure</strong> to automate claims analysis for an insurance client. Reduced manual effort by 40% and improved fraud detection accuracy.
-        </div>
-      </div>
-      <div class="project">
-        <div class="project-title">Real-Time Business Intelligence Automation</div>
-        <div class="project-desc">
-          Developed end-to-end BI automation using <strong>Tableau, SQL, and R</strong> for a leading healthcare provider. Enabled real-time executive dashboards and actionable insights, saving over 500 man-hours annually.
-        </div>
-      </div>
-      <div class="project">
-        <div class="project-title">Customer Segmentation Using Machine Learning</div>
-        <div class="project-desc">
-          Built and productionized advanced segmentation models leveraging <strong>Python, scikit-learn, and AWS</strong> for a retail client. Improved targeted marketing efficiency and increased campaign ROI by 25%.
-        </div>
-      </div>
-    </section>
-
-    <!-- Recommendations Section -->
-    <section id="recommendations">
-      <h2>Recommendations</h2>
-      <div id="recommendation-list">
-        <div class="recommendation">
-          Nitin has an outstanding ability to turn complex data into clear, actionable insights. His leadership and mentoring are top-notch.<br>
-          <span class="recommendation-author">– Ananya G., Head of Analytics</span>
-        </div>
-        <div class="recommendation">
-          Working with Nitin on AI automation projects was inspiring—his technical expertise and dedication made all the difference.<br>
-          <span class="recommendation-author">– Rohit S., Data Scientist</span>
-        </div>
-        <div class="recommendation">
-          Exceptional collaborator! Nitin delivers innovative solutions and is always focused on driving measurable business outcomes.<br>
-          <span class="recommendation-author">– Priya M., Project Manager</span>
-        </div>
-      </div>
-      <form id="add-recommendation-form" autocomplete="off">
-        <h4>Add a Recommendation</h4>
-        <input type="text" id="rec-author" placeholder="Your Name (or initial)" required>
-        <textarea id="rec-text" placeholder="Write your recommendation..." rows="3" required></textarea>
-        <button type="submit">Submit Recommendation</button>
-      </form>
-    </section>
-  </main>
-
-  <script>
-    // Navigation smooth scroll
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const section = document.querySelector(this.getAttribute('href'));
-        section.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-    document.querySelector('.home-icon').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    // Add new recommendation functionality
-    document.getElementById('add-recommendation-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const text = document.getElementById('rec-text').value.trim();
-      const author = document.getElementById('rec-author').value.trim();
-      if (text && author) {
-        const recDiv = document.createElement('div');
-        recDiv.className = 'recommendation';
-        recDiv.innerHTML = `${text}<br><span class="recommendation-author">– ${author}</span>`;
-        document.getElementById('recommendation-list').appendChild(recDiv);
-        this.reset();
-        setTimeout(() => {
-          alert('Thank you! Your recommendation has been submitted.');
-        }, 150);
+  // Nav highlighting on scroll
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let fromTop = window.scrollY + 130;
+    navLinks.forEach(link => {
+      let section = document.querySelector(link.hash);
+      if (
+        section.offsetTop <= fromTop &&
+        section.offsetTop + section.offsetHeight > fromTop
+      ) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
       }
     });
-  </script>
+  });
+
+  // Section fade-in on scroll
+  function revealOnScroll() {
+    document.querySelectorAll('section').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 90) {
+        section.classList.add('visible');
+      }
+    });
+  }
+  revealOnScroll(); window.addEventListener('scroll', revealOnScroll);
+
+  // Contact form (static, with popup confirmation)
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('form-success').style.display='block';
+    document.getElementById('form-success').innerText = "Thank you! Your message has been received.";
+    setTimeout(()=>{
+      document.getElementById('form-success').style.display='none';
+      document.getElementById('contact-form').reset();
+    }, 2200);
+  });
+
+  // ANIMATED PARTICLES BACKGROUND
+  const canvas = document.getElementById('particles-canvas');
+  let ctx = canvas.getContext('2d');
+  let particles = [];
+  function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas); resizeCanvas();
+  function initParticles(){
+    particles=[];
+    let num = Math.floor(window.innerWidth/22);
+    for(let i=0;i<num;i++){
+      particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*1.7+1,
+        dx: (Math.random()-0.5)*0.35,
+        dy: (Math.random()-0.5)*0.35,
+        alpha: Math.random()*0.35+0.10
+      });
+    }
+  }
+  function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let p of particles){
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--particle');
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      // Move
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>canvas.width) p.dx*=-1;
+      if(p.y<0||p.y>canvas.height) p.dy*=-1;
+    }
+    requestAnimationFrame(drawParticles);
+  }
+  initParticles(); drawParticles();
+  window.addEventListener('resize', ()=>{resizeCanvas();initParticles();});
+
+  // Footer Date
+  document.getElementById('current-date').textContent =
+    new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+
+</script>
 </body>
 </html>
